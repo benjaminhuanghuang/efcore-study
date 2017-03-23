@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace EFCore101.Models
 {
     public class Blog
     {
         public int BlogId { get; set; }
+        [MaxLength(200)]
         public string Name { get; set; }
         public string Url {get;set;}
     }
@@ -17,23 +20,5 @@ namespace EFCore101.Models
 
         public int BlogId{get; set;}
         public Blog Blog {get; set;}
-    }
-
-    public class BloggingContext: DbContext
-    {
-        public DbSet<Blog> Blogs{get; set;}
-        public DbSet<Post> Posts{get; set;}
-        private readonly string _connString;
-        
-        public BloggingContext(string connString)
-        {
-            _connString = connString;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connString);
-            base.OnConfiguring(optionsBuilder);
-        }
     }
 }

@@ -30,6 +30,19 @@ namespace EFCore101
                     Console.WriteLine(item.Name);
                 }
             }
+
+            PrintMappings();
+        }
+
+        private static void PrintMappings()
+        {
+            using (var db = new BloggingContext())
+            {
+                foreach(var item in db.Model.GetEntityTypes())
+                {
+                    Console.WriteLine($"{item.ClrType.Name} => {item.Model}");
+                }
+            }
         }
     }
 }

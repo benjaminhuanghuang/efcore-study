@@ -11,7 +11,6 @@ namespace EFCore101.Models
         
         public NoteContext()
         {
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
